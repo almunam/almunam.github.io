@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al Muktadir Munam — Researcher · Epidemiology &amp; Applied Health</title>
+<meta name="description" content="M.Sc. Candidate in Epidemiology &amp; Applied Health Research at Dalhousie University. Psychiatric epidemiology and applied machine learning for predicting mental-health outcomes.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<script type="text/babel">
+const sections = ['about','research','education','experience','publications','awards','writing','contact'];
+const labels = { about:'About', research:'Research', education:'Education', experience:'Experience', publications:'Publications', awards:'Honors', writing:'Writing', contact:'Contact' };
+
+function Navbar({ active, onNavigate }) {
+  return (
+    <nav className="navbar">
+      <div className="nav-container">
+        <div className="nav-brand" onClick={() => onNavigate('about')}>Al Muktadir Munam<span className="dot"> · </span><span style={{color:'var(--ink-3)',fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.1em',textTransform:'uppercase'}}>Researcher</span></div>
+        <ul className="nav-menu">
+          {sections.map(s => (
+            <li key={s}><span className={`nav-link ${active===s?'active':''}`} onClick={() => onNavigate(s)}>{labels[s]}</span></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
+
+function Hero({ onContact, onDownload }) {
+  return (
+    <section id="about" className="section hero-section" data-screen-label="01 About">
+      <div className="container">
+        <div className="hero-grid">
+          <div>
+            <div className="hero-eyebrow">M.Sc. Candidate · Dalhousie University</div>
+            <h1 className="hero-title" style={{fontSize:'56px'}}>Al Muktadir Munam</h1>
+            <p className="hero-subtitle">Psychiatric epidemiology &amp; applied machine learning for predicting mental-health outcomes.</p>
+            <p className="hero-desc">I develop and validate statistical and machine-learning models for predicting psychiatric hospitalization, and work on digital phenotyping, wastewater surveillance, and cross-sectional studies of mental health in low-resource settings. Currently a graduate student in Epidemiology &amp; Applied Health Research at Dalhousie.</p>
+            <dl className="hero-meta">
+              <dt>Affiliation</dt><dd>Dalhousie University, Nova Scotia</dd>
+              <dt>Program</dt><dd>M.Sc. Epidemiology &amp; Applied Health Research (2024–2026)</dd>
+              <dt>Email</dt><dd><a href="mailto:muktadir.munam@dal.ca">muktadir.munam@dal.ca</a></dd>
+              <dt>Profiles</dt><dd>
+                <a href="https://scholar.google.com" target="_blank" rel="noreferrer">Google Scholar</a> ·{' '}
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a> ·{' '}
+                <a href="https://orcid.org" target="_blank" rel="noreferrer">ORCID</a>
+              </dd>
+            </dl>
+            <div className="hero-buttons">
+              <button className="btn btn-primary" onClick={onDownload}>Download CV <span className="arrow">↓</span></button>
+              <button className="btn btn-secondary" onClick={onContact}>Get in touch</button>
+            </div>
+          </div>
+          <aside className="hero-aside">
+            <figure className="portrait-figure">
+              <div className="portrait-frame portrait-frame--ticks">
+                <div className="portrait-corner portrait-corner--tl"></div>
+                <div className="portrait-corner portrait-corner--tr"></div>
+                <div className="portrait-corner portrait-corner--bl"></div>
+                <div className="portrait-corner portrait-corner--br"></div>
+                <div className="portrait-index">Munam</div>
+                <div className="portrait-img">
+                  <img src="munam.jpg" alt="Al Muktadir Munam"/>
+                </div>
+                <div className="portrait-caption">
+                  <span className="caption-rule"></span>
+                  <span className="caption-text">Al Muktadir Munam<br/><em>M.Sc. Candidate, Epidemiology<br/>&amp; Applied Health Research</em></span>
+                </div>
+              </div>
+              <div className="portrait-sidemark">
+                <span className="sidemark-line"></span>
+                <span className="sidemark-text">Halifax · NS · 2026</span>
+              </div>
+            </figure>
+          </aside>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Research() {
+  const items = [
+    { num: '01', title: 'Psychiatric Epidemiology', desc: 'Patterns, causes, and effects of mental-health disorders in defined populations — with a focus on youth and perinatal mental health in low- and middle-income settings.' },
+    { num: '02', title: 'Machine Learning for Health', desc: 'Statistical and ML models that predict clinical outcomes — 1- and 12-month psychiatric hospitalization, digital phenotyping of functional recovery, and early-warning frameworks.' },
+    { num: '03', title: 'Digital & Public Health Surveillance', desc: 'Wastewater SARS-CoV-2 surveillance as an early signal of community infection; digital interventions for youth mental-health promotion.' },
+  ];
+  return (
+    <section id="research" className="section" data-screen-label="02 Research">
+      <div className="container">
+        <div className="section-label">Research interests</div>
+        <h2 className="section-title">Three lines of inquiry, one <em>question</em>: how do we predict who needs care, before they reach crisis?</h2>
+        <div className="research-grid">
+          {items.map(it => (
+            <div className="research-card" key={it.num}>
+              <div className="research-num">{it.num} — Focus area</div>
+              <h3 className="research-title">{it.title}</h3>
+              <p className="research-desc">{it.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Education() {
+  const items = [
+    { range: '2024 — 2026', status: 'In progress', title: 'M.Sc. in Epidemiology & Applied Health Research', org: 'Dalhousie University, Nova Scotia, Canada', notes: [<>Thesis: <em>Development and validation of statistical and machine-learning models for predicting 1-month and 12-month psychiatric hospitalization.</em></>, 'Projects at the intersection of psychiatric epidemiology and applied machine learning.'] },
+    { range: '2022 — 2023', title: 'M.P.H. — Master of Public Health', org: 'Varendra University, Rajshahi, Bangladesh', gpa: 'CGPA 3.95 / 4.00 (79.53%)', notes: [<>Thesis: <em>Comorbidity and Factors Influencing Bipolar Disorder Among Female University Students in Bangladesh.</em></>, 'Public health principles, quantitative research methods, and health policy.'] },
+    { range: '2018 — 2022', title: 'B.Sc. in Computer Science & Engineering', org: 'Varendra University, Rajshahi, Bangladesh', gpa: 'CGPA 4.00 / 4.00 (91.78%) · Top rank · Chancellor\'s Gold Medal', notes: [<>Thesis: <em>Prevalence of Diabetes Mellitus and Hypertension among the Adult Population in Bangladesh during the COVID-19 Pandemic.</em></>, 'Programming, AI, and machine-learning applications.'] },
+  ];
+  return (
+    <section id="education" className="section" data-screen-label="03 Education">
+      <div className="container">
+        <div className="section-label">Education</div>
+        <h2 className="section-title">Academic training</h2>
+        {items.map((it, i) => (
+          <div className="entry" key={i}>
+            <div className="entry-meta">
+              {it.range}
+              {it.status && <div><span className="status">{it.status}</span></div>}
+            </div>
+            <div>
+              <h3 className="entry-title">{it.title}</h3>
+              <p className="entry-org">{it.org}</p>
+              {it.gpa && <p className="entry-gpa">{it.gpa}</p>}
+              {it.notes && <ul className="entry-notes">{it.notes.map((n, j) => <li key={j}>{n}</li>)}</ul>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Experience({ showPrev, setShowPrev }) {
+  const current = [
+    { range: 'Sep 2025 — Present', title: 'Teaching Assistant', org: 'College of Pharmacy, Dalhousie University', notes: ['Facilitate weekly problem-based learning sessions for first-year pharmacy students.', 'Guide case-based discussions to develop clinical reasoning.'] },
+    { range: 'Sep 2025 — Present', title: 'Outreach Assistant', org: 'Office of Community Engagement, Dalhousie University', notes: ['Manage communications and scheduling for office social channels.', 'Represent the office at conferences and community events.'] },
+    { range: 'Feb 2022 — Present', title: 'Lecturer (Study Leave)', org: 'Dept. of Computer Science & Engineering, Varendra University', notes: ['Lectures on Computer Architecture, Artificial Intelligence, and Parallel Processing.', 'Mentored 600+ undergraduates and supervised 9 final-year thesis projects.'] },
+  ];
+  const previous = [
+    { range: 'Feb 2025 — Jun 2025', title: 'Student Public Health Officer', org: 'Public Health Agency of Canada', notes: ['16-week wastewater surveillance project with the Public Health Surveillance team.', 'Integrated wastewater SARS-CoV-2 RNA data with clinical indicators to assess correlation with infection trends.'] },
+    { range: 'Sep 2023 — Feb 2025', title: 'Research Assistant', org: 'Health Data Science Lab, Dalhousie University', notes: ['Managed and analyzed large datasets for a digital phenotyping project on symptoms and functional outcomes.', 'Developed action plans, work manuals, and automated text-messaging systems.'] },
+    { range: 'Jul 2017 — Jan 2018', title: 'Officer Cadet', org: 'Bangladesh Navy (Batch 17/B)', notes: ['Completed the 67th Joint Service Training.'] },
+  ];
+  return (
+    <section id="experience" className="section" data-screen-label="04 Experience">
+      <div className="container">
+        <div className="section-label">Experience</div>
+        <h2 className="section-title">Positions</h2>
+        {current.map((it, i) => (
+          <div className="entry" key={i}>
+            <div className="entry-meta">{it.range}<div><span className="status">Current</span></div></div>
+            <div>
+              <h3 className="entry-title">{it.title}</h3>
+              <p className="entry-org">{it.org}</p>
+              <ul className="entry-notes">{it.notes.map((n,j) => <li key={j}>{n}</li>)}</ul>
+            </div>
+          </div>
+        ))}
+        <div style={{marginTop:32, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+          <div className="section-label" style={{margin:0}}>Previous positions</div>
+          <button className="toggle-btn" onClick={() => setShowPrev(p=>!p)}>{showPrev ? '— Hide' : '+ Show'}</button>
+        </div>
+        {showPrev && (
+          <div style={{marginTop:16}}>
+            {previous.map((it, i) => (
+              <div className="entry" key={i}>
+                <div className="entry-meta">{it.range}</div>
+                <div>
+                  <h3 className="entry-title">{it.title}</h3>
+                  <p className="entry-org">{it.org}</p>
+                  <ul className="entry-notes">{it.notes.map((n,j) => <li key={j}>{n}</li>)}</ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Publications() {
+  const journal = [
+    { year: '2025', authors: '<strong>Munam, A.M.</strong>, Hossain, A.', title: 'Prevalence of Diabetes Mellitus and Hypertension Among COVID-19 Patients: A Cross-Sectional Study.', journal: 'Health Science Reports', vol: '8(8)', doi: '10.1002/hsr2.71183' },
+    { year: '2024', authors: '<strong>Munam, A.M.</strong>, Hossain, A.', title: 'Factors Influencing Mental Health Among Youth During the COVID-19 Lockdown: A Cross-Sectional Study in Bangladesh.', journal: 'IEEE Transactions on Computational Social Systems', vol: '1–10', doi: '10.1109/TCSS.2024.3350087' },
+    { year: '2023', authors: 'Hossain, A., <strong>Munam, A.M.</strong>, Bhuiya, R.A., Amin, M.R., Ali, M.Z.', title: 'Socio-Demographic Factors Influencing Physical Health Among Youth During the COVID-19 Pandemic in Bangladesh.', journal: 'SN Social Sciences', vol: '3(7), 115', doi: '10.1007/s43545-023-00700-z' },
+    { year: '2023', authors: 'Rahman, S., <strong>Munam, A.M.</strong>, Hossain, A., Hossain, A.S.M.D., Bhuiya, R.A.', title: 'Socio-Economic Factors Affecting the Academic Performance of Private University Students in Bangladesh.', journal: 'SN Social Sciences', vol: '3(2), 26', doi: '10.1007/s43545-023-00614-w' },
+    { year: '2023', authors: '<strong>Munam, A.M.</strong>, Hossain, A., Bhuiya, R.A., Ali, M.Z.', title: 'Prevalence of Diabetes in the Adult Population in Bangladesh during the COVID-19 Pandemic.', journal: 'Fortune Journal of Health Sciences', vol: '6(1), 8–17', doi: '10.26502/fjhs.093' },
+    { year: '2022', authors: '<strong>Munam, A.M.</strong>, Hossain, A.', title: 'Factors Influencing Facebook Addiction Among Varendra University Students in the Lockdown During the COVID-19 Outbreak.', journal: 'Computers in Human Behavior Reports', vol: '6, 100181', doi: '10.1016/j.chbr.2022.100181' },
+  ];
+  const chapter = [
+    { year: '2025', authors: 'Rahman, S., Hossain, A., <strong>Munam, A.M.</strong>, Lima, A.A., Bhuiya, R.A., Das, J., Kamruzzaman, M.', title: 'Mental Health of Pregnant Women in Bangladesh During the COVID-19 Pandemic: A Cross-Sectional Study.', journal: 'Sexual and Reproductive Health of Women: Dimensions and Perspectives', vol: 'pp. 207–241, Springer Nature Singapore', doi: '10.1007/978-981-97-8418-9_14' },
+  ];
+  const underReview = [
+    { year: '2025', authors: '<strong>Munam, A.M.</strong>, Akter, M.F.', title: 'Parent–Daughter Relationship Quality and Depression Among Unmarried Adolescent Girls in Bangladesh.', journal: 'Discover Psychology', vol: 'Revision submitted' },
+    { year: '2025', authors: '<strong>Munam, A.M.</strong>', title: 'A Patient-Centered 5D Framework for Evaluating AI Early-Warning Systems in Mental Health.', journal: 'In Silico Research in Biomedicine', vol: 'Revision submitted' },
+  ];
+  const PubList = ({ items, startIdx=1 }) => items.map((p, i) => (
+    <article className="pub-item" key={i}>
+      <div className="pub-num">[{String(startIdx+i).padStart(2,'0')}]</div>
+      <div>
+        <div className="pub-authors" dangerouslySetInnerHTML={{__html: p.authors}}/>
+        <h3 className="pub-title">{p.title}</h3>
+        <p className="pub-journal">{p.journal}{p.vol && <>, <span className="vol">{p.vol}</span></>}.</p>
+        {p.doi && <a className="pub-doi" href={`https://doi.org/${p.doi}`} target="_blank" rel="noreferrer">doi:{p.doi}</a>}
+      </div>
+      <div className="pub-year">{p.year}</div>
+    </article>
+  ));
+  return (
+    <section id="publications" className="section" data-screen-label="05 Publications">
+      <div className="container">
+        <div className="section-label">Publications</div>
+        <h2 className="section-title">Peer-reviewed work</h2>
+        <h3 className="pub-group-title">Journal Articles</h3>
+        <p className="pub-group-sub">Six articles · 2022–2025</p>
+        <PubList items={journal} startIdx={1}/>
+        <h3 className="pub-group-title">Book Chapter</h3>
+        <p className="pub-group-sub">One chapter · Springer Nature Singapore</p>
+        <PubList items={chapter} startIdx={7}/>
+        <h3 className="pub-group-title">Under Review</h3>
+        <p className="pub-group-sub">Two manuscripts · Revisions submitted</p>
+        <PubList items={underReview} startIdx={8}/>
+      </div>
+    </section>
+  );
+}
+
+function Awards() {
+  const awards = [
+    { year: '2024', title: 'Best Imagery', org: 'Student Writing Competition, Global Health Office, Dalhousie University' },
+    { year: '2019', title: 'Runner-Up, Idea Contest', org: 'TECHFEST-2019, Varendra University' },
+    { year: '2018', title: 'Champion, Math Olympiad', org: 'Varendra University Programming Club Geeks Contest' },
+    { year: '2018', title: '14th · Regional Level', org: '13th Bangladesh Astro-Olympiad' },
+    { year: '2014', title: 'Mayor Education Award', org: 'Outstanding SSC result · Rajshahi City Corporation' },
+    { year: '2012', title: 'Mayor Education Award', org: 'Outstanding JSC result · Rajshahi City Corporation' },
+  ];
+  const scholarships = [
+    { year: '2024', title: 'Dalhousie OpenThink Initiative', org: 'Faculty of Graduate Studies · CDN $1,500' },
+    { year: '2018–22', title: 'Undergraduate Academic Excellence Scholarship', org: 'Full tuition waiver · CDN $6,600' },
+    { year: '2017–21', title: 'HSC Board Stipend (29th position)', org: 'Rajshahi Education Board · CDN $750' },
+    { year: '2015–16', title: 'SSC Board Stipend (3rd position)', org: 'Rajshahi Education Board · CDN $300' },
+    { year: '2013–14', title: 'JSC Board Stipend (2nd position)', org: 'Rajshahi Education Board · CDN $200' },
+  ];
+  return (
+    <section id="awards" className="section" data-screen-label="06 Honors">
+      <div className="container">
+        <div className="section-label">Honors &amp; Funding</div>
+        <h2 className="section-title">Awards, scholarships, and recognition</h2>
+        <div className="awards-grid">
+          <div className="awards-column">
+            <h3>Awards &amp; Contests</h3>
+            {awards.map((a, i) => (
+              <div className="award-item" key={i}>
+                <div className="award-year">{a.year}</div>
+                <div><h4 className="award-title">{a.title}</h4><p className="award-org">{a.org}</p></div>
+              </div>
+            ))}
+          </div>
+          <div className="awards-column">
+            <h3>Scholarships</h3>
+            {scholarships.map((a, i) => (
+              <div className="award-item" key={i}>
+                <div className="award-year">{a.year}</div>
+                <div><h4 className="award-title">{a.title}</h4><p className="award-org">{a.org}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Writing() {
+  const posts = [
+    { date: '2025.09', title: 'Early-warning in psychiatry: what the 5D framework gets right', excerpt: 'Five dimensions — discrimination, calibration, fairness, utility, interpretability — for evaluating AI systems in mental health.', tag: 'Methods' },
+    { date: '2025.07', title: 'What wastewater told us before the clinical signal arrived', excerpt: 'Reflections from 16 weeks at the Public Health Agency of Canada and why WBE belongs in routine surveillance.', tag: 'Surveillance' },
+    { date: '2025.03', title: 'Predicting psychiatric hospitalization: the baseline that beat us', excerpt: 'A logistic regression kept pace with gradient-boosted ensembles for 1-month prediction. Here is why that is a feature, not a bug.', tag: 'ML' },
+    { date: '2024.11', title: 'Notes from CCGH: interdisciplinary global health in practice', excerpt: 'Takeaways from the Canadian Conference on Global Health — what collaboration between epidemiology and CS actually looks like.', tag: 'Field notes' },
+  ];
+  return (
+    <section id="writing" className="section" data-screen-label="07 Writing">
+      <div className="container">
+        <div className="section-label">Writing</div>
+        <h2 className="section-title">Essays &amp; field notes</h2>
+        <div className="blog-list">
+          {posts.map((p, i) => (
+            <div className="blog-row" key={i}>
+              <div className="blog-date">{p.date}</div>
+              <div>
+                <h3 className="blog-row-title">{p.title}</h3>
+                <p className="blog-row-excerpt">{p.excerpt}</p>
+              </div>
+              <div className="blog-tag">{p.tag}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Expertise() {
+  return (
+    <section id="expertise" className="section" data-screen-label="08 Expertise">
+      <div className="container">
+        <div className="section-label">Expertise</div>
+        <h2 className="section-title">Methods &amp; languages</h2>
+        <div className="personal-grid">
+          <div className="personal-card">
+            <h3>Methods</h3>
+            <ul>
+              <li>Statistical modeling <span className="muted">· mixed effects, survival</span></li>
+              <li>Supervised ML <span className="muted">· GBM, RF, logistic</span></li>
+              <li>Digital phenotyping</li>
+              <li>Cross-sectional surveys</li>
+              <li>Wastewater surveillance</li>
+              <li>Academic writing &amp; publishing</li>
+            </ul>
+          </div>
+          <div className="personal-card">
+            <h3>Tools</h3>
+            <ul>
+              <li>Python <span className="muted">· pandas, scikit-learn, PyTorch</span></li>
+              <li>R <span className="muted">· tidyverse, lme4, tidymodels</span></li>
+              <li>SQL &amp; relational databases</li>
+              <li>Git &amp; reproducible research</li>
+              <li>LaTeX · RMarkdown · Quarto</li>
+            </ul>
+          </div>
+          <div className="personal-card">
+            <h3>Languages</h3>
+            <ul>
+              <li>English <span className="muted">· Professional</span></li>
+              <li>Bengali <span className="muted">· Native</span></li>
+            </ul>
+            <h3 style={{marginTop:28}}>Societies</h3>
+            <ul>
+              <li>Canadian Public Health Association</li>
+              <li>Dalhousie OpenThink Fellows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact({ onEmail }) {
+  return (
+    <section id="contact" className="section contact-section" data-screen-label="09 Contact">
+      <div className="container narrow">
+        <div className="section-label">Contact</div>
+        <h2 className="section-title">Open to collaborations across <em>epidemiology, ML, and public health</em>.</h2>
+        <p>I'm particularly interested in supervised research placements, predictive-model validation across clinical sites, and reviewing manuscripts in psychiatric epidemiology or applied ML. For course-assistant and outreach inquiries at Dalhousie, please use my institutional email below.</p>
+        <dl className="hero-meta" style={{borderTop:'1px solid var(--rule)', borderBottom:'1px solid var(--rule)', padding:'20px 0', marginBottom:32}}>
+          <dt>Email</dt><dd><a href="mailto:muktadir.munam@dal.ca">muktadir.munam@dal.ca</a></dd>
+          <dt>Office</dt><dd>Dalhousie University, Halifax, Nova Scotia, Canada</dd>
+          <dt>Response</dt><dd>Within 3 business days</dd>
+        </dl>
+        <div className="contact-links">
+          <button className="btn btn-primary" onClick={onEmail}>Write me an email <span className="arrow">→</span></button>
+          <a className="btn btn-secondary" href="https://scholar.google.com" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a className="btn btn-secondary" href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a className="btn btn-secondary" href="https://orcid.org" target="_blank" rel="noreferrer">ORCID</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-inner">
+        <div className="mono">© 2026 · Al Muktadir Munam</div>
+        <div className="mono">Last updated · April 2026</div>
+        <div className="mono">Halifax · NS · Canada</div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  const [active, setActive] = React.useState('about');
+  const [showPrev, setShowPrev] = React.useState(false);
+  const [toast, setToast] = React.useState(null);
+
+  const scrollTo = (id) => {
+    setActive(id);
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 48, behavior: 'smooth' });
+  };
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const secs = document.querySelectorAll('section[id]');
+      const y = window.scrollY + 120;
+      secs.forEach(s => {
+        if (y >= s.offsetTop && y < s.offsetTop + s.offsetHeight) setActive(s.id);
+      });
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const flash = (m) => { setToast(m); setTimeout(() => setToast(null), 2000); };
+
+  return (
+    <>
+      <Navbar active={active} onNavigate={scrollTo}/>
+      <Hero onContact={() => scrollTo('contact')} onDownload={() => flash('CV_AlMuktadirMunam.pdf — add your CV file to the repo')}/>
+      <Research/>
+      <Education/>
+      <Experience showPrev={showPrev} setShowPrev={setShowPrev}/>
+      <Publications/>
+      <Awards/>
+      <Writing/>
+      <Expertise/>
+      <Contact onEmail={() => { window.location.href = 'mailto:muktadir.munam@dal.ca'; }}/>
+      <Footer/>
+      {toast && (
+        <div style={{position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', background:'var(--ink)', color:'var(--paper)', padding:'12px 20px', borderRadius:2, fontSize:13, boxShadow:'0 4px 12px rgba(0,0,0,0.12)', zIndex:2000, fontFamily:'var(--font-mono)', letterSpacing:'0.04em'}}>{toast}</div>
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
