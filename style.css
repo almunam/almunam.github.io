@@ -101,6 +101,12 @@ body .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
 body .btn .arrow { font-size: 14px; line-height: 1; }
 body .toggle-btn { background: transparent; border: 1px solid var(--rule-strong); color: var(--ink-2); padding: 6px 12px; border-radius: 2px; font-weight: 500; font-size: 11px; cursor: pointer; font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 body .toggle-btn:hover { color: var(--ink); border-color: var(--ink); }
+body .previous-toggle { margin-top: 36px; padding: 18px 20px; border: 1px solid var(--rule-strong); border-left: 3px solid var(--teal-deep); display: flex; justify-content: space-between; align-items: center; gap: 20px; background: rgba(26, 104, 115, 0.035); }
+body .previous-kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 6px; }
+body .previous-summary { font-size: 13px; color: var(--ink-2); line-height: 1.5; margin: 0; }
+body .previous-toggle-btn { min-height: 38px; padding: 10px 14px; background: var(--paper); color: var(--ink); border-color: var(--rule-strong); flex-shrink: 0; }
+body .previous-toggle-btn:hover { background: var(--teal-deep); color: #fff; border-color: var(--teal-deep); }
+body .toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid currentColor; border-radius: 50%; font-size: 13px; line-height: 1; margin-right: 4px; }
 
 /* Entries */
 body .entry { display: grid; grid-template-columns: 160px 1fr; gap: 40px; padding: 28px 0; border-top: 1px solid var(--rule); }
@@ -117,7 +123,7 @@ body .entry-notes li:before { content: "\2014"; position: absolute; left: 0; col
 body .entry-notes li em { font-style: italic; color: var(--ink); }
 
 /* Research */
-body .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
+body .research-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
 body .research-card { padding: 32px 28px 32px 28px; border-right: 1px solid var(--rule); position: relative; }
 body .research-card:first-child { padding-left: 0; }
 body .research-card:last-child { border-right: none; padding-right: 0; }
@@ -148,7 +154,16 @@ body .award-item { display: grid; grid-template-columns: 80px 1fr; gap: 20px; pa
 body .award-item:last-child { border-bottom: none; }
 body .award-year { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); letter-spacing: 0.06em; padding-top: 2px; }
 body .award-title { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 3px; line-height: 1.4; font-family: var(--font-sans); }
+body .award-title a { color: var(--teal-deep); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--rule-strong); }
+body .award-title a:hover { text-decoration-color: var(--teal); }
 body .award-org { font-size: 12px; color: var(--ink-2); line-height: 1.5; margin: 0; }
+
+/* Certifications */
+body .cert-list { border-top: 1px solid var(--rule-strong); columns: 2; column-gap: 56px; }
+body .cert-row { break-inside: avoid; display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+body .cert-year { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.08em; padding-top: 3px; }
+body .cert-title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; font-family: var(--font-sans); }
+body .cert-org { font-size: 12px; color: var(--teal-deep); line-height: 1.45; margin: 3px 0 0; }
 
 /* Writing */
 body .blog-list { border-top: 1px solid var(--rule-strong); }
@@ -179,6 +194,12 @@ body .footer { background: var(--paper); color: var(--ink-3); padding: 32px 0; b
 body .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: 1120px; margin: 0 auto; padding: 0 32px; }
 body .footer .mono { font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
 
+@media (max-width: 1100px) {
+  body .research-grid { grid-template-columns: repeat(2, 1fr); }
+  body .research-card:nth-child(2) { border-right: none; }
+  body .research-card:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
 @media (max-width: 900px) {
   body .nav-menu { display: none; }
   body .hero-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -187,6 +208,9 @@ body .footer .mono { font-family: var(--font-mono); letter-spacing: 0.08em; text
   body .research-grid { grid-template-columns: 1fr; }
   body .research-card { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; }
   body .research-card:last-child { border-bottom: none; }
+  body .previous-toggle { align-items: flex-start; flex-direction: column; }
+  body .previous-toggle-btn { width: 100%; }
+  body .cert-list { columns: 1; }
   body .awards-grid, body .personal-grid { grid-template-columns: 1fr; gap: 48px; }
   body .entry, body .pub-item, body .blog-row { grid-template-columns: 1fr; gap: 8px; }
 }
