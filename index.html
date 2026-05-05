@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Al Muktadir Munam — Researcher · Epidemiology &amp; Applied Health</title>
-<meta name="description" content="M.Sc. Candidate in Epidemiology &amp; Applied Health Research at Dalhousie University. Psychiatric epidemiology and applied machine learning for predicting mental-health outcomes.">
+<meta name="description" content="M.Sc. Candidate in Epidemiology &amp; Applied Health Research at Dalhousie University with interests across public health, epidemiology, health data science, machine learning, teaching, and community engagement.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
 
 <script type="text/babel">
-const sections = ['about','research','education','experience','publications','awards','writing','contact'];
-const labels = { about:'About', research:'Research', education:'Education', experience:'Experience', publications:'Publications', awards:'Honors', writing:'Writing', contact:'Contact' };
+const sections = ['about','research','education','experience','publications','awards','certifications','writing','contact'];
+const labels = { about:'About', research:'Research', education:'Education', experience:'Experience', publications:'Publications', awards:'Honors', certifications:'Certifications', writing:'Writing', contact:'Contact' };
 
 function Navbar({ active, onNavigate }) {
   return (
@@ -44,21 +44,13 @@ function Hero({ onContact, onDownload }) {
           <div>
             <div className="hero-eyebrow">M.Sc. Candidate · Dalhousie University</div>
             <h1 className="hero-title" style={{fontSize:'56px'}}>Al Muktadir Munam</h1>
-            <p className="hero-subtitle">Psychiatric epidemiology &amp; applied machine learning for predicting mental-health outcomes.</p>
-            <p className="hero-desc">I develop and validate statistical and machine-learning models for predicting psychiatric hospitalization, and work on digital phenotyping, wastewater surveillance, and cross-sectional studies of mental health in low-resource settings. Currently a graduate student in Epidemiology &amp; Applied Health Research at Dalhousie.</p>
-            <dl className="hero-meta">
-              <dt>Affiliation</dt><dd>Dalhousie University, Nova Scotia</dd>
-              <dt>Program</dt><dd>M.Sc. Epidemiology &amp; Applied Health Research (2024–2026)</dd>
-              <dt>Email</dt><dd><a href="mailto:muktadir.munam@dal.ca">muktadir.munam@dal.ca</a></dd>
-              <dt>Profiles</dt><dd>
-                <a href="https://scholar.google.com" target="_blank" rel="noreferrer">Google Scholar</a> ·{' '}
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a> ·{' '}
-                <a href="https://orcid.org" target="_blank" rel="noreferrer">ORCID</a>
-              </dd>
-            </dl>
+            <p className="hero-subtitle">Public health, epidemiology, health data science, and applied machine learning.</p>
+            <p className="hero-desc">I work across public health research, statistical analysis, machine-learning applications, surveillance, and academic teaching. My background connects epidemiology, computer science, mental-health research, digital phenotyping, wastewater surveillance, and cross-sectional studies in low-resource settings. Currently, I am a graduate student in Epidemiology &amp; Applied Health Research at Dalhousie.</p>
             <div className="hero-buttons">
               <button className="btn btn-primary" onClick={onDownload}>Download CV <span className="arrow">↓</span></button>
               <button className="btn btn-secondary" onClick={onContact}>Get in touch</button>
+              <a className="btn btn-secondary" href="https://www.linkedin.com/in/al-muktadir-munam/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="btn btn-secondary" href="https://scholar.google.com/citations?user=K7U1hsEAAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
             </div>
           </div>
           <aside className="hero-aside">
@@ -91,15 +83,16 @@ function Hero({ onContact, onDownload }) {
 
 function Research() {
   const items = [
-    { num: '01', title: 'Psychiatric Epidemiology', desc: 'Patterns, causes, and effects of mental-health disorders in defined populations — with a focus on youth and perinatal mental health in low- and middle-income settings.' },
-    { num: '02', title: 'Machine Learning for Health', desc: 'Statistical and ML models that predict clinical outcomes — 1- and 12-month psychiatric hospitalization, digital phenotyping of functional recovery, and early-warning frameworks.' },
-    { num: '03', title: 'Digital & Public Health Surveillance', desc: 'Wastewater SARS-CoV-2 surveillance as an early signal of community infection; digital interventions for youth mental-health promotion.' },
+    { num: '01', title: 'Predictive Modeling', desc: 'Developing and validating statistical models for health outcomes, risk stratification, and evidence-informed decision support.' },
+    { num: '02', title: 'Psychiatric Epidemiology', desc: 'Studying patterns, determinants, and outcomes of mental health conditions across populations and care settings.' },
+    { num: '03', title: 'Machine Learning', desc: 'Applying supervised learning and health-data science methods to clinical, behavioral, and public-health datasets.' },
+    { num: '04', title: 'Population Health', desc: 'Examining health patterns, risk factors, and inequities through epidemiologic studies, surveillance, and community-focused public-health research.' },
   ];
   return (
     <section id="research" className="section" data-screen-label="02 Research">
       <div className="container">
         <div className="section-label">Research interests</div>
-        <h2 className="section-title">Three lines of inquiry, one <em>question</em>: how do we predict who needs care, before they reach crisis?</h2>
+        <h2 className="section-title">Research interests across <em>population health</em>, data science, and applied public-health questions.</h2>
         <div className="research-grid">
           {items.map(it => (
             <div className="research-card" key={it.num}>
@@ -146,14 +139,17 @@ function Education() {
 
 function Experience({ showPrev, setShowPrev }) {
   const current = [
-    { range: 'Sep 2025 — Present', title: 'Teaching Assistant', org: 'College of Pharmacy, Dalhousie University', notes: ['Facilitate weekly problem-based learning sessions for first-year pharmacy students.', 'Guide case-based discussions to develop clinical reasoning.'] },
-    { range: 'Sep 2025 — Present', title: 'Outreach Assistant', org: 'Office of Community Engagement, Dalhousie University', notes: ['Manage communications and scheduling for office social channels.', 'Represent the office at conferences and community events.'] },
-    { range: 'Feb 2022 — Present', title: 'Lecturer (Study Leave)', org: 'Dept. of Computer Science & Engineering, Varendra University', notes: ['Lectures on Computer Architecture, Artificial Intelligence, and Parallel Processing.', 'Mentored 600+ undergraduates and supervised 9 final-year thesis projects.'] },
+    { range: 'Sep 2025 — Present', status: 'Current', title: 'Teaching Assistant', org: 'College of Pharmacy, Dalhousie University', notes: ['Facilitate weekly problem-based learning sessions for first-year pharmacy students.', 'Guide case-based discussions to develop clinical reasoning.'] },
+    { range: 'Sep 2025 — Present', status: 'Current', title: 'Outreach Assistant', org: 'Office of Community Engagement, Dalhousie University', notes: ['Manage communications and scheduling for office social channels.', 'Represent the office at conferences and community events.'] },
+    { range: 'Feb 2022 — Present', status: 'Current', title: 'Lecturer (Study Leave)', org: 'Dept. of Computer Science & Engineering, Varendra University', notes: ['Lectures on Computer Architecture, Artificial Intelligence, and Parallel Processing.', 'Mentored 600+ undergraduates and supervised 9 final-year thesis projects.'] },
+    { range: 'Feb 2025 — Jun 2025', status: 'Canada', title: 'Student Public Health Officer', org: 'Public Health Agency of Canada', notes: ['16-week wastewater surveillance project with the Public Health Surveillance team.', 'Integrated wastewater SARS-CoV-2 RNA data with clinical indicators to assess correlation with infection trends.'] },
+    { range: 'Sep 2023 — Feb 2025', status: 'Canada', title: 'Research Assistant', org: 'Health Data Science Lab, Dalhousie University', notes: ['Managed and analyzed large datasets for a digital phenotyping project on symptoms and functional outcomes.', 'Developed action plans, work manuals, and automated text-messaging systems.'] },
   ];
   const previous = [
-    { range: 'Feb 2025 — Jun 2025', title: 'Student Public Health Officer', org: 'Public Health Agency of Canada', notes: ['16-week wastewater surveillance project with the Public Health Surveillance team.', 'Integrated wastewater SARS-CoV-2 RNA data with clinical indicators to assess correlation with infection trends.'] },
-    { range: 'Sep 2023 — Feb 2025', title: 'Research Assistant', org: 'Health Data Science Lab, Dalhousie University', notes: ['Managed and analyzed large datasets for a digital phenotyping project on symptoms and functional outcomes.', 'Developed action plans, work manuals, and automated text-messaging systems.'] },
-    { range: 'Jul 2017 — Jan 2018', title: 'Officer Cadet', org: 'Bangladesh Navy (Batch 17/B)', notes: ['Completed the 67th Joint Service Training.'] },
+    { range: "Oct 2021 — Dec 2021", title: 'Facilitator', org: 'Varendra University Career Club', notes: ['Facilitated 12 youth leadership training sessions, empowering 20 participants with leadership skills and knowledge.', 'Developed and implemented training materials and conducted interactive workshops in collaboration with NGOs.', 'Contributed to SDG 16: Peace, Justice, and Strong Institutions by fostering critical thinking and countering violence and extremism.'] },
+    { range: "May 2018 — Feb 2022", title: 'Instructor (Quant and Analytical Skills)', org: "Mentors' Education", notes: ['Developed and delivered comprehensive lectures on key mathematical concepts for competitive exams, including university admission tests, GED, SAT, and GRE.', 'Prepared and organized instructional materials to enhance student understanding of complex quantitative topics.', 'Managed course logistics and facilitated student interactions to promote an engaging learning environment.'] },
+    { range: "May 2018 — Sep 2021", title: 'Instructor', org: 'Unity Coaching Center', notes: ['Conducted preparatory sessions for Inter-Services Selection Board (ISSB) exams, focusing on critical thinking and decision-making skills.', "Created and evaluated practice materials to support students' exam readiness.", 'Drew on military training experience to teach future military officers, blending physical training with intellectual development.'] },
+    { range: 'Jul 2017 — Jan 2018', title: 'Officer Cadet', org: 'Bangladesh Navy (Batch 17/B)', notes: ['Successfully completed the 67th Joint Service Training, enhancing capabilities in strategic planning, teamwork, and operational execution.', 'Developed critical decision-making skills under pressure, preparing for complex and high-stakes environments.', 'Acquired discipline, resilience, and strong leadership qualities through rigorous military training.'] },
   ];
   return (
     <section id="experience" className="section" data-screen-label="04 Experience">
@@ -162,7 +158,7 @@ function Experience({ showPrev, setShowPrev }) {
         <h2 className="section-title">Positions</h2>
         {current.map((it, i) => (
           <div className="entry" key={i}>
-            <div className="entry-meta">{it.range}<div><span className="status">Current</span></div></div>
+            <div className="entry-meta">{it.range}{it.status && <div><span className="status">{it.status}</span></div>}</div>
             <div>
               <h3 className="entry-title">{it.title}</h3>
               <p className="entry-org">{it.org}</p>
@@ -170,9 +166,15 @@ function Experience({ showPrev, setShowPrev }) {
             </div>
           </div>
         ))}
-        <div style={{marginTop:32, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div className="section-label" style={{margin:0}}>Previous positions</div>
-          <button className="toggle-btn" onClick={() => setShowPrev(p=>!p)}>{showPrev ? '— Hide' : '+ Show'}</button>
+        <div className="previous-toggle">
+          <div>
+            <div className="previous-kicker">Previous positions</div>
+            <p className="previous-summary">{previous.length} earlier roles in teaching, facilitation, and service</p>
+          </div>
+          <button className="toggle-btn previous-toggle-btn" onClick={() => setShowPrev(p=>!p)} aria-expanded={showPrev}>
+            <span className="toggle-icon">{showPrev ? '-' : '+'}</span>
+            <span>{showPrev ? 'Hide previous roles' : 'Show previous roles'}</span>
+          </button>
         </div>
         {showPrev && (
           <div style={{marginTop:16}}>
@@ -195,6 +197,7 @@ function Experience({ showPrev, setShowPrev }) {
 
 function Publications() {
   const journal = [
+    { year: '2026', authors: '<strong>Munam, A.M.</strong>, Akter, M.F.', title: 'Parent daughter relationship quality and depressive symptoms among unmarried adolescent girls in Bangladesh: Evidence from 2019/20 Bangladesh Adolescent Health and Wellbeing Survey.', journal: 'Psychiatry Research Communications', vol: '6(1), 100244', doi: '10.1016/j.psycom.2026.100244' },
     { year: '2025', authors: '<strong>Munam, A.M.</strong>, Hossain, A.', title: 'Prevalence of Diabetes Mellitus and Hypertension Among COVID-19 Patients: A Cross-Sectional Study.', journal: 'Health Science Reports', vol: '8(8)', doi: '10.1002/hsr2.71183' },
     { year: '2024', authors: '<strong>Munam, A.M.</strong>, Hossain, A.', title: 'Factors Influencing Mental Health Among Youth During the COVID-19 Lockdown: A Cross-Sectional Study in Bangladesh.', journal: 'IEEE Transactions on Computational Social Systems', vol: '1–10', doi: '10.1109/TCSS.2024.3350087' },
     { year: '2023', authors: 'Hossain, A., <strong>Munam, A.M.</strong>, Bhuiya, R.A., Amin, M.R., Ali, M.Z.', title: 'Socio-Demographic Factors Influencing Physical Health Among Youth During the COVID-19 Pandemic in Bangladesh.', journal: 'SN Social Sciences', vol: '3(7), 115', doi: '10.1007/s43545-023-00700-z' },
@@ -204,10 +207,6 @@ function Publications() {
   ];
   const chapter = [
     { year: '2025', authors: 'Rahman, S., Hossain, A., <strong>Munam, A.M.</strong>, Lima, A.A., Bhuiya, R.A., Das, J., Kamruzzaman, M.', title: 'Mental Health of Pregnant Women in Bangladesh During the COVID-19 Pandemic: A Cross-Sectional Study.', journal: 'Sexual and Reproductive Health of Women: Dimensions and Perspectives', vol: 'pp. 207–241, Springer Nature Singapore', doi: '10.1007/978-981-97-8418-9_14' },
-  ];
-  const underReview = [
-    { year: '2025', authors: '<strong>Munam, A.M.</strong>, Akter, M.F.', title: 'Parent–Daughter Relationship Quality and Depression Among Unmarried Adolescent Girls in Bangladesh.', journal: 'Discover Psychology', vol: 'Revision submitted' },
-    { year: '2025', authors: '<strong>Munam, A.M.</strong>', title: 'A Patient-Centered 5D Framework for Evaluating AI Early-Warning Systems in Mental Health.', journal: 'In Silico Research in Biomedicine', vol: 'Revision submitted' },
   ];
   const PubList = ({ items, startIdx=1 }) => items.map((p, i) => (
     <article className="pub-item" key={i}>
@@ -227,14 +226,11 @@ function Publications() {
         <div className="section-label">Publications</div>
         <h2 className="section-title">Peer-reviewed work</h2>
         <h3 className="pub-group-title">Journal Articles</h3>
-        <p className="pub-group-sub">Six articles · 2022–2025</p>
+        <p className="pub-group-sub">Seven articles · 2022–2026</p>
         <PubList items={journal} startIdx={1}/>
         <h3 className="pub-group-title">Book Chapter</h3>
         <p className="pub-group-sub">One chapter · Springer Nature Singapore</p>
-        <PubList items={chapter} startIdx={7}/>
-        <h3 className="pub-group-title">Under Review</h3>
-        <p className="pub-group-sub">Two manuscripts · Revisions submitted</p>
-        <PubList items={underReview} startIdx={8}/>
+        <PubList items={chapter} startIdx={8}/>
       </div>
     </section>
   );
@@ -242,7 +238,7 @@ function Publications() {
 
 function Awards() {
   const awards = [
-    { year: '2024', title: 'Best Imagery', org: 'Student Writing Competition, Global Health Office, Dalhousie University' },
+    { year: '2024', title: 'Best Imagery', org: 'Student Writing Competition, Global Health Office, Dalhousie University · Shaping the future with tech-enabled care', url: 'https://www.flipsnack.com/doctorsnovascotia/doctorsns-decjan2025/full-view.html?p=22' },
     { year: '2019', title: 'Runner-Up, Idea Contest', org: 'TECHFEST-2019, Varendra University' },
     { year: '2018', title: 'Champion, Math Olympiad', org: 'Varendra University Programming Club Geeks Contest' },
     { year: '2018', title: '14th · Regional Level', org: '13th Bangladesh Astro-Olympiad' },
@@ -267,7 +263,10 @@ function Awards() {
             {awards.map((a, i) => (
               <div className="award-item" key={i}>
                 <div className="award-year">{a.year}</div>
-                <div><h4 className="award-title">{a.title}</h4><p className="award-org">{a.org}</p></div>
+                <div>
+                  <h4 className="award-title">{a.url ? <a href={a.url} target="_blank" rel="noreferrer">{a.title}</a> : a.title}</h4>
+                  <p className="award-org">{a.org}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -286,28 +285,78 @@ function Awards() {
   );
 }
 
-function Writing() {
-  const posts = [
-    { date: '2025.09', title: 'Early-warning in psychiatry: what the 5D framework gets right', excerpt: 'Five dimensions — discrimination, calibration, fairness, utility, interpretability — for evaluating AI systems in mental health.', tag: 'Methods' },
-    { date: '2025.07', title: 'What wastewater told us before the clinical signal arrived', excerpt: 'Reflections from 16 weeks at the Public Health Agency of Canada and why WBE belongs in routine surveillance.', tag: 'Surveillance' },
-    { date: '2025.03', title: 'Predicting psychiatric hospitalization: the baseline that beat us', excerpt: 'A logistic regression kept pace with gradient-boosted ensembles for 1-month prediction. Here is why that is a feature, not a bug.', tag: 'ML' },
-    { date: '2024.11', title: 'Notes from CCGH: interdisciplinary global health in practice', excerpt: 'Takeaways from the Canadian Conference on Global Health — what collaboration between epidemiology and CS actually looks like.', tag: 'Field notes' },
+function Certifications() {
+  const certs = [
+    { year: '2026', org: 'Panel on Research Ethics, Government of Canada', title: 'TCPS 2: CORE 2022 - Ethical Conduct for Research Involving Humans' },
+    { year: '2024', org: 'Mitacs', title: 'Accelerate Program (Edge)' },
+    { year: '2023', org: 'Mitacs', title: 'Project and Time Management (Edge)' },
+    { year: '2023', org: 'Mitacs', title: 'Reconciliation and EDI course bundle (Edge)' },
+    { year: '2023', org: 'Google', title: 'Foundations: Data, Data, Everywhere (Coursera)' },
+    { year: '2022', org: 'University of Pennsylvania', title: 'Operations Analytics (Coursera)' },
+    { year: '2021', org: 'Stanford University', title: 'Cryptography I (Coursera)' },
+    { year: '2021', org: 'DeepLearning.AI', title: 'AI For Everyone (Coursera)' },
+    { year: '2021', org: 'IBM', title: 'Introduction to Cybersecurity Tools & Cyber Attacks (Coursera)' },
+    { year: '2021', org: 'NORC at University of Chicago and New York University', title: 'USAID Youth Social Leadership Program' },
+    { year: '2020', org: 'Coding Blocks', title: 'Competitive Programming Contest Problems' },
+    { year: '2020', org: 'University of Pennsylvania', title: 'Customer Analytics (Coursera)' },
+    { year: '2020', org: 'The Hong Kong University of Science and Technology', title: 'Fibonacci Numbers and the Golden Ratio (Coursera)' },
+    { year: '2019', org: 'Duke University', title: 'Data Science Math Skills (Coursera)' },
+    { year: '2018', org: 'Stanford University', title: 'Introduction to Mathematical Thinking (Coursera)' },
+    { year: '2018', org: 'Waseda University', title: 'Cosmic Rays, Dark Matter & the Mysteries of the Universe (edX)' },
+    { year: '2018', org: 'University of Pennsylvania', title: 'People Analytics (Coursera)' },
+    { year: '2018', org: 'University of Michigan', title: 'Programming for Everybody: Getting Started with Python (Coursera)' },
   ];
   return (
-    <section id="writing" className="section" data-screen-label="07 Writing">
+    <section id="certifications" className="section" data-screen-label="07 Certifications">
+      <div className="container">
+        <div className="section-label">Selected online certifications</div>
+        <h2 className="section-title">Continuing training across ethics, analytics, programming, and leadership</h2>
+        <div className="cert-list">
+          {certs.map((c, i) => (
+            <div className="cert-row" key={i}>
+              <div className="cert-year">{c.year}</div>
+              <div>
+                <h3 className="cert-title">{c.title}</h3>
+                <p className="cert-org">{c.org}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Writing() {
+  const posts = [
+    { date: 'Dec 2025', title: 'The Jenga of Life: Balancing Mental Health, Wellness, and More', excerpt: 'Life resembles a Jenga game where each block represents a component of our holistic wellbeing.', tag: 'Wellness', url: 'https://blogs.dal.ca/openthink/the-jenga-of-life-balancing-mental-health-wellness-and-more/' },
+    { date: 'Nov 2025', title: 'Love and Mental Health: Challenges from Transitions to Intimacy and Beyond', excerpt: 'Second-part blog exploring mental health challenges across relationship stages and intimacy issues.', tag: 'Relationships', url: 'https://blogs.dal.ca/openthink/love-and-mental-health-challenges-from-transitions-to-intimacy-and-beyond/' },
+    { date: 'Oct 2025', title: 'From Ideas to Action: A Day of Ideas, Connection, and Hope at CCGH 2025', excerpt: 'Reflects on CCGH 2025 sessions connecting global health equity, migration, policy, peace, resilience, and community voices.', tag: 'Global health', url: 'https://blogs.dal.ca/globalhealth/2025/10/30/from-ideas-to-action-a-day-of-ideas-connection-and-hope-at-ccgh-2025/' },
+    { date: 'Oct 2025', title: 'Finding Purpose and Connection at the Student and Emerging Professionals Day', excerpt: 'A reflection on SEP Day at CCGH 2025, mentorship, digital health, equity, and interdisciplinary connection.', tag: 'Global health', url: 'https://blogs.dal.ca/globalhealth/2025/10/30/finding-purpose-and-connection-at-the-student-and-emerging-professionals-day/' },
+    { date: 'Oct 2025', title: 'Love and Mental Health: The Foundations of Supportive Relationships', excerpt: 'Examines how strong relationships and mental health are deeply connected and mutually influential.', tag: 'Relationships', url: 'https://blogs.dal.ca/openthink/love-and-mental-health-the-foundations-of-supportive-relationships/' },
+    { date: 'Sep 2025', title: 'Screen Time in Early Childhood: The Hidden Mental Health Threat', excerpt: "Discusses growing concerns about digital screens affecting young children's mental health in Canada.", tag: 'Child health', url: 'https://blogs.dal.ca/openthink/screen-time-in-early-childhood-the-hidden-mental-health-threat/' },
+    { date: 'Aug 2025', title: 'How Research Findings Can Be Misleading: Understanding the Biases', excerpt: 'Explores how hidden biases in research studies can mislead readers drawing incorrect conclusions.', tag: 'Methods', url: 'https://blogs.dal.ca/openthink/how-research-findings-can-be-misleading-understanding-the-biases/' },
+    { date: 'Jul 2025', title: 'Mood Swings: Not Limited to Any Specific Gender', excerpt: 'Challenges gender stereotypes by highlighting that men also experience mood swings frequently.', tag: 'Mental health', url: 'https://blogs.dal.ca/openthink/mood-swings-not-limited-to-any-specific-gender/' },
+    { date: 'Jun 2025', title: 'Uncovering the Root Causes: Upstream Reasoning for Sustainable Health Solutions', excerpt: 'Argues for deeper upstream analysis of root causes for truly effective health interventions.', tag: 'Public health', url: 'https://blogs.dal.ca/openthink/uncovering-the-root-causes-upstream-reasoning-for-sustainable-health-solutions/' },
+    { date: 'May 2025', title: 'Fighting Loneliness: The Rise of Social Robots in Elderly Care', excerpt: 'Explores how social robots may help combat loneliness and isolation in elderly populations.', tag: 'Elder care', url: 'https://blogs.dal.ca/openthink/fighting-loneliness-the-rise-of-social-robots-in-elderly-care/' },
+    { date: 'Apr 2025', title: "Slices of the Mind: Understanding Depression's Complex Recipe", excerpt: "Breaks down depression's complex, multifaceted nature affecting roughly 280 million people worldwide.", tag: 'Depression', url: 'https://blogs.dal.ca/openthink/slices-of-the-mind-understanding-depressions-complex-recipe/' },
+    { date: 'Jan 2025', title: 'Shaping the future with tech-enabled care', excerpt: 'Best Imagery award piece featured in the Doctors Nova Scotia Dec/Jan 2025 issue.', tag: 'Magazine', url: 'https://www.flipsnack.com/doctorsnovascotia/doctorsns-decjan2025/full-view.html?p=22' },
+  ];
+  return (
+    <section id="writing" className="section" data-screen-label="08 Writing">
       <div className="container">
         <div className="section-label">Writing</div>
         <h2 className="section-title">Essays &amp; field notes</h2>
         <div className="blog-list">
           {posts.map((p, i) => (
-            <div className="blog-row" key={i}>
+            <a className="blog-row" key={i} href={p.url} target="_blank" rel="noreferrer">
               <div className="blog-date">{p.date}</div>
               <div>
                 <h3 className="blog-row-title">{p.title}</h3>
                 <p className="blog-row-excerpt">{p.excerpt}</p>
               </div>
               <div className="blog-tag">{p.tag}</div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -317,7 +366,7 @@ function Writing() {
 
 function Expertise() {
   return (
-    <section id="expertise" className="section" data-screen-label="08 Expertise">
+    <section id="expertise" className="section" data-screen-label="09 Expertise">
       <div className="container">
         <div className="section-label">Expertise</div>
         <h2 className="section-title">Methods &amp; languages</h2>
@@ -363,11 +412,11 @@ function Expertise() {
 
 function Contact({ onEmail }) {
   return (
-    <section id="contact" className="section contact-section" data-screen-label="09 Contact">
+    <section id="contact" className="section contact-section" data-screen-label="10 Contact">
       <div className="container narrow">
         <div className="section-label">Contact</div>
-        <h2 className="section-title">Open to collaborations across <em>epidemiology, ML, and public health</em>.</h2>
-        <p>I'm particularly interested in supervised research placements, predictive-model validation across clinical sites, and reviewing manuscripts in psychiatric epidemiology or applied ML. For course-assistant and outreach inquiries at Dalhousie, please use my institutional email below.</p>
+        <h2 className="section-title">Open to collaborations across <em>epidemiology, data science, and public health</em>.</h2>
+        <p>I'm interested in interdisciplinary research, applied data analysis, public-health surveillance, health-data science, teaching, and community-facing work. For research, course-assistant, outreach, or manuscript inquiries, please use my institutional email below.</p>
         <dl className="hero-meta" style={{borderTop:'1px solid var(--rule)', borderBottom:'1px solid var(--rule)', padding:'20px 0', marginBottom:32}}>
           <dt>Email</dt><dd><a href="mailto:muktadir.munam@dal.ca">muktadir.munam@dal.ca</a></dd>
           <dt>Office</dt><dd>Dalhousie University, Halifax, Nova Scotia, Canada</dd>
@@ -375,9 +424,8 @@ function Contact({ onEmail }) {
         </dl>
         <div className="contact-links">
           <button className="btn btn-primary" onClick={onEmail}>Write me an email <span className="arrow">→</span></button>
-          <a className="btn btn-secondary" href="https://scholar.google.com" target="_blank" rel="noreferrer">Google Scholar</a>
-          <a className="btn btn-secondary" href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a className="btn btn-secondary" href="https://orcid.org" target="_blank" rel="noreferrer">ORCID</a>
+          <a className="btn btn-secondary" href="https://scholar.google.com/citations?user=K7U1hsEAAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a className="btn btn-secondary" href="https://www.linkedin.com/in/al-muktadir-munam/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -420,16 +468,20 @@ function App() {
   }, []);
 
   const flash = (m) => { setToast(m); setTimeout(() => setToast(null), 2000); };
+  const openCv = () => {
+    window.open('cv.html?print=1', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <>
       <Navbar active={active} onNavigate={scrollTo}/>
-      <Hero onContact={() => scrollTo('contact')} onDownload={() => flash('CV_AlMuktadirMunam.pdf — add your CV file to the repo')}/>
+      <Hero onContact={() => scrollTo('contact')} onDownload={openCv}/>
       <Research/>
       <Education/>
       <Experience showPrev={showPrev} setShowPrev={setShowPrev}/>
       <Publications/>
       <Awards/>
+      <Certifications/>
       <Writing/>
       <Expertise/>
       <Contact onEmail={() => { window.location.href = 'mailto:muktadir.munam@dal.ca'; }}/>
