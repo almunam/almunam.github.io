@@ -31,7 +31,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
-body { padding-top: 64px; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-feature-settings: "ss01","cv11"; }
+body { padding-top: 64px; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-feature-settings: "ss01","cv11"; overflow-x: hidden; }
 body p { margin: 0; color: inherit; }
 body h1, body h2, body h3, body h4 { margin: 0; font-weight: inherit; letter-spacing: 0; color: inherit; line-height: inherit; }
 body a { color: inherit; text-decoration: none; }
@@ -55,6 +55,11 @@ body .nav-link { color: var(--ink-2); font-weight: 500; font-size: 13px; cursor:
 body .nav-link:hover, body .nav-link.active { color: var(--teal-deep); }
 body .nav-link.active { position: relative; }
 body .nav-link.active:after { content:""; position:absolute; left:0; right:0; bottom:-22px; height:2px; background: var(--teal); }
+body .nav-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; cursor: pointer; }
+body .nav-toggle span { width: 18px; height: 1px; background: var(--ink); transition: transform 160ms ease, opacity 160ms ease; }
+body .navbar.menu-open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+body .navbar.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+body .navbar.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* Hero */
 body .hero-section { padding: 90px 0 72px; background: var(--paper); border-top: none; }
@@ -195,22 +200,81 @@ body .footer-inner { display: flex; justify-content: space-between; align-items:
 body .footer .mono { font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
 
 @media (max-width: 1100px) {
+  body .nav-menu { gap: 16px; }
+  body .nav-link { font-size: 12px; }
+  body .hero-grid { gap: 40px; }
+  body .hero-aside { padding-left: 32px; }
   body .research-grid { grid-template-columns: repeat(2, 1fr); }
   body .research-card:nth-child(2) { border-right: none; }
   body .research-card:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
 }
 
+@media (max-width: 1040px) {
+  body .nav-container { position: relative; }
+  body .nav-toggle { display: inline-flex; flex-shrink: 0; }
+  body .nav-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; gap: 0; padding: 10px 32px 18px; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--rule); box-shadow: 0 16px 30px rgba(15,35,39,0.08); }
+  body .navbar.menu-open .nav-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  body .nav-menu li { min-width: 0; }
+  body .nav-link { display: flex; align-items: center; min-height: 44px; padding: 0 4px; font-size: 13px; }
+  body .nav-link.active:after { display: none; }
+}
+
 @media (max-width: 900px) {
-  body .nav-menu { display: none; }
+  body { padding-top: 60px; }
+  body .container { padding: 0 24px; }
+  body .section { padding: 56px 0; }
+  body .section-title { font-size: 28px; margin-bottom: 28px; }
+  body .navbar { height: 60px; }
+  body .nav-container { padding: 0 24px; }
+  body .nav-brand { font-size: 17px; }
+  body .nav-menu { top: 60px; padding-left: 24px; padding-right: 24px; }
+  body .hero-section { padding: 60px 0 56px; }
   body .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   body .hero-aside { border-left: none; border-top: 1px solid var(--rule); padding: 24px 0 0; }
   body .hero-title { font-size: 40px; }
+  body .hero-subtitle { font-size: 20px; }
+  body .portrait-frame { width: min(260px, calc(100vw - 96px)); }
   body .research-grid { grid-template-columns: 1fr; }
   body .research-card { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; }
   body .research-card:last-child { border-bottom: none; }
+  body .entry { padding: 24px 0; }
+  body .entry-meta { font-size: 10px; }
+  body .entry-title { font-size: 19px; }
+  body .pub-item { grid-template-columns: 44px 1fr; gap: 6px 14px; align-items: start; }
+  body .pub-item > div:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; }
+  body .pub-year { grid-column: 1; grid-row: 2; }
+  body .pub-doi { overflow-wrap: anywhere; }
+  body .blog-row { padding: 20px 0; }
+  body .blog-tag { text-align: left; }
   body .previous-toggle { align-items: flex-start; flex-direction: column; }
   body .previous-toggle-btn { width: 100%; }
   body .cert-list { columns: 1; }
   body .awards-grid, body .personal-grid { grid-template-columns: 1fr; gap: 48px; }
   body .entry, body .pub-item, body .blog-row { grid-template-columns: 1fr; gap: 8px; }
+  body .pub-item > div:nth-child(2), body .pub-year { grid-column: auto; grid-row: auto; }
+  body .contact-section { padding: 72px 0 88px; }
+  body .contact-section .section-title { font-size: 30px; max-width: 24ch; }
+}
+
+@media (max-width: 560px) {
+  body .container, body .nav-container, body .footer-inner { padding-left: 18px; padding-right: 18px; }
+  body .nav-brand { font-size: 16px; max-width: calc(100vw - 86px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  body .nav-brand span[style] { display: none; }
+  body .navbar.menu-open .nav-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-left: 18px; padding-right: 18px; }
+  body .hero-section { padding-top: 48px; }
+  body .hero-title { font-size: 34px; }
+  body .hero-subtitle { font-size: 18px; }
+  body .hero-desc, body .contact-section p { font-size: 14px; line-height: 1.6; }
+  body .hero-buttons, body .contact-links { flex-direction: column; }
+  body .hero-buttons .btn, body .contact-links .btn { width: 100%; min-height: 42px; }
+  body .portrait-figure { grid-template-columns: 1fr; }
+  body .portrait-frame { width: min(100%, 300px); }
+  body .portrait-sidemark { display: none; }
+  body .section { padding: 48px 0; }
+  body .section-title { font-size: 25px; }
+  body .entry { gap: 10px; padding: 22px 0; }
+  body .entry-notes li { font-size: 13px; line-height: 1.55; }
+  body .award-item, body .cert-row { grid-template-columns: 1fr; gap: 6px; }
+  body .blog-row-title { font-size: 17px; }
+  body .footer-inner { align-items: flex-start; flex-direction: column; }
 }
