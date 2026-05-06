@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script data-goatcounter="https://munam.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div id="root"></div>
@@ -18,17 +20,34 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
 
 <script type="text/babel">
-const sections = ['about','research','education','experience','publications','awards','certifications','writing','contact'];
-const labels = { about:'About', research:'Research', education:'Education', experience:'Experience', publications:'Publications', awards:'Honors', certifications:'Certifications', writing:'Writing', contact:'Contact' };
+const sections = ['about','education','experience','research','publications','awards','writing','certification','contact'];
+const labels = { about:'About', education:'Education', experience:'Experience', research:'Research', publications:'Publications', awards:'Honors', writing:'Writing', certification:'Certification', contact:'Contact' };
 
 function Navbar({ active, onNavigate }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const navigate = (id) => {
+    setMenuOpen(false);
+    onNavigate(id);
+  };
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${menuOpen ? 'menu-open' : ''}`}>
       <div className="nav-container">
         <div className="nav-brand" onClick={() => onNavigate('about')}>Al Muktadir Munam<span className="dot"> · </span><span style={{color:'var(--ink-3)',fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.1em',textTransform:'uppercase'}}>Researcher</span></div>
+        <button
+          className="nav-toggle"
+          type="button"
+          onClick={() => setMenuOpen(open => !open)}
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={menuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <ul className="nav-menu">
           {sections.map(s => (
-            <li key={s}><span className={`nav-link ${active===s?'active':''}`} onClick={() => onNavigate(s)}>{labels[s]}</span></li>
+            <li key={s}><span className={`nav-link ${active===s?'active':''}`} onClick={() => navigate(s)}>{labels[s]}</span></li>
           ))}
         </ul>
       </div>
@@ -43,7 +62,7 @@ function Hero({ onContact, onDownload }) {
         <div className="hero-grid">
           <div>
             <div className="hero-eyebrow">M.Sc. Candidate · Dalhousie University</div>
-            <h1 className="hero-title" style={{fontSize:'56px'}}>Al Muktadir Munam</h1>
+            <h1 className="hero-title">Al Muktadir Munam</h1>
             <p className="hero-subtitle">Public health, epidemiology, health data science, and applied machine learning.</p>
             <p className="hero-desc">I work across public health research, statistical analysis, machine-learning applications, surveillance, and academic teaching. My background connects epidemiology, computer science, mental-health research, digital phenotyping, wastewater surveillance, and cross-sectional studies in low-resource settings. Currently, I am a graduate student in Epidemiology &amp; Applied Health Research at Dalhousie.</p>
             <div className="hero-buttons">
@@ -89,7 +108,7 @@ function Research() {
     { num: '04', title: 'Population Health', desc: 'Examining health patterns, risk factors, and inequities through epidemiologic studies, surveillance, and community-focused public-health research.' },
   ];
   return (
-    <section id="research" className="section" data-screen-label="02 Research">
+    <section id="research" className="section" data-screen-label="04 Research">
       <div className="container">
         <div className="section-label">Research interests</div>
         <h2 className="section-title">Research interests across <em>population health</em>, data science, and applied public-health questions.</h2>
@@ -114,7 +133,7 @@ function Education() {
     { range: '2018 — 2022', title: 'B.Sc. in Computer Science & Engineering', org: 'Varendra University, Rajshahi, Bangladesh', gpa: 'CGPA 4.00 / 4.00 (91.78%) · Top rank · Chancellor\'s Gold Medal', notes: [<>Thesis: <em>Prevalence of Diabetes Mellitus and Hypertension among the Adult Population in Bangladesh during the COVID-19 Pandemic.</em></>, 'Programming, AI, and machine-learning applications.'] },
   ];
   return (
-    <section id="education" className="section" data-screen-label="03 Education">
+    <section id="education" className="section" data-screen-label="02 Education">
       <div className="container">
         <div className="section-label">Education</div>
         <h2 className="section-title">Academic training</h2>
@@ -152,7 +171,7 @@ function Experience({ showPrev, setShowPrev }) {
     { range: 'Jul 2017 — Jan 2018', title: 'Officer Cadet', org: 'Bangladesh Navy (Batch 17/B)', notes: ['Successfully completed the 67th Joint Service Training, enhancing capabilities in strategic planning, teamwork, and operational execution.', 'Developed critical decision-making skills under pressure, preparing for complex and high-stakes environments.', 'Acquired discipline, resilience, and strong leadership qualities through rigorous military training.'] },
   ];
   return (
-    <section id="experience" className="section" data-screen-label="04 Experience">
+    <section id="experience" className="section" data-screen-label="03 Experience">
       <div className="container">
         <div className="section-label">Experience</div>
         <h2 className="section-title">Positions</h2>
@@ -285,7 +304,7 @@ function Awards() {
   );
 }
 
-function Certifications() {
+function Certification() {
   const certs = [
     { year: '2026', org: 'Panel on Research Ethics, Government of Canada', title: 'TCPS 2: CORE 2022 - Ethical Conduct for Research Involving Humans' },
     { year: '2024', org: 'Mitacs', title: 'Accelerate Program (Edge)' },
@@ -307,7 +326,7 @@ function Certifications() {
     { year: '2018', org: 'University of Michigan', title: 'Programming for Everybody: Getting Started with Python (Coursera)' },
   ];
   return (
-    <section id="certifications" className="section" data-screen-label="07 Certifications">
+    <section id="certification" className="section" data-screen-label="08 Certification">
       <div className="container">
         <div className="section-label">Selected online certifications</div>
         <h2 className="section-title">Continuing training across ethics, analytics, programming, and leadership</h2>
@@ -329,21 +348,21 @@ function Certifications() {
 
 function Writing() {
   const posts = [
-    { date: 'Dec 2025', title: 'The Jenga of Life: Balancing Mental Health, Wellness, and More', excerpt: 'Life resembles a Jenga game where each block represents a component of our holistic wellbeing.', tag: 'Wellness', url: 'https://blogs.dal.ca/openthink/the-jenga-of-life-balancing-mental-health-wellness-and-more/' },
-    { date: 'Nov 2025', title: 'Love and Mental Health: Challenges from Transitions to Intimacy and Beyond', excerpt: 'Second-part blog exploring mental health challenges across relationship stages and intimacy issues.', tag: 'Relationships', url: 'https://blogs.dal.ca/openthink/love-and-mental-health-challenges-from-transitions-to-intimacy-and-beyond/' },
     { date: 'Oct 2025', title: 'From Ideas to Action: A Day of Ideas, Connection, and Hope at CCGH 2025', excerpt: 'Reflects on CCGH 2025 sessions connecting global health equity, migration, policy, peace, resilience, and community voices.', tag: 'Global health', url: 'https://blogs.dal.ca/globalhealth/2025/10/30/from-ideas-to-action-a-day-of-ideas-connection-and-hope-at-ccgh-2025/' },
     { date: 'Oct 2025', title: 'Finding Purpose and Connection at the Student and Emerging Professionals Day', excerpt: 'A reflection on SEP Day at CCGH 2025, mentorship, digital health, equity, and interdisciplinary connection.', tag: 'Global health', url: 'https://blogs.dal.ca/globalhealth/2025/10/30/finding-purpose-and-connection-at-the-student-and-emerging-professionals-day/' },
-    { date: 'Oct 2025', title: 'Love and Mental Health: The Foundations of Supportive Relationships', excerpt: 'Examines how strong relationships and mental health are deeply connected and mutually influential.', tag: 'Relationships', url: 'https://blogs.dal.ca/openthink/love-and-mental-health-the-foundations-of-supportive-relationships/' },
-    { date: 'Sep 2025', title: 'Screen Time in Early Childhood: The Hidden Mental Health Threat', excerpt: "Discusses growing concerns about digital screens affecting young children's mental health in Canada.", tag: 'Child health', url: 'https://blogs.dal.ca/openthink/screen-time-in-early-childhood-the-hidden-mental-health-threat/' },
-    { date: 'Aug 2025', title: 'How Research Findings Can Be Misleading: Understanding the Biases', excerpt: 'Explores how hidden biases in research studies can mislead readers drawing incorrect conclusions.', tag: 'Methods', url: 'https://blogs.dal.ca/openthink/how-research-findings-can-be-misleading-understanding-the-biases/' },
-    { date: 'Jul 2025', title: 'Mood Swings: Not Limited to Any Specific Gender', excerpt: 'Challenges gender stereotypes by highlighting that men also experience mood swings frequently.', tag: 'Mental health', url: 'https://blogs.dal.ca/openthink/mood-swings-not-limited-to-any-specific-gender/' },
-    { date: 'Jun 2025', title: 'Uncovering the Root Causes: Upstream Reasoning for Sustainable Health Solutions', excerpt: 'Argues for deeper upstream analysis of root causes for truly effective health interventions.', tag: 'Public health', url: 'https://blogs.dal.ca/openthink/uncovering-the-root-causes-upstream-reasoning-for-sustainable-health-solutions/' },
-    { date: 'May 2025', title: 'Fighting Loneliness: The Rise of Social Robots in Elderly Care', excerpt: 'Explores how social robots may help combat loneliness and isolation in elderly populations.', tag: 'Elder care', url: 'https://blogs.dal.ca/openthink/fighting-loneliness-the-rise-of-social-robots-in-elderly-care/' },
-    { date: 'Apr 2025', title: "Slices of the Mind: Understanding Depression's Complex Recipe", excerpt: "Breaks down depression's complex, multifaceted nature affecting roughly 280 million people worldwide.", tag: 'Depression', url: 'https://blogs.dal.ca/openthink/slices-of-the-mind-understanding-depressions-complex-recipe/' },
-    { date: 'Jan 2025', title: 'Shaping the future with tech-enabled care', excerpt: 'Best Imagery award piece featured in the Doctors Nova Scotia Dec/Jan 2025 issue.', tag: 'Magazine', url: 'https://www.flipsnack.com/doctorsnovascotia/doctorsns-decjan2025/full-view.html?p=22' },
+    { date: 'Dec 2024', title: 'The Jenga of Life: Balancing Mental Health, Wellness, and More', excerpt: 'Life resembles a Jenga game where each block represents a component of our holistic wellbeing.', tag: 'Wellness', url: 'https://blogs.dal.ca/openthink/the-jenga-of-life-balancing-mental-health-wellness-and-more/' },
+    { date: 'Nov 2024', title: 'Love and Mental Health: Challenges from Transitions to Intimacy and Beyond', excerpt: 'Second-part blog exploring mental health challenges across relationship stages and intimacy issues.', tag: 'Relationships', url: 'https://blogs.dal.ca/openthink/love-and-mental-health-challenges-from-transitions-to-intimacy-and-beyond/' },
+    { date: 'Oct 2024', title: 'Love and Mental Health: The Foundations of Supportive Relationships', excerpt: 'Examines how strong relationships and mental health are deeply connected and mutually influential.', tag: 'Relationships', url: 'https://blogs.dal.ca/openthink/love-and-mental-health-the-foundations-of-supportive-relationships/' },
+    { date: 'Sep 2024', title: 'Screen Time in Early Childhood: The Hidden Mental Health Threat', excerpt: "Discusses growing concerns about digital screens affecting young children's mental health in Canada.", tag: 'Child health', url: 'https://blogs.dal.ca/openthink/screen-time-in-early-childhood-the-hidden-mental-health-threat/' },
+    { date: 'Aug 2024', title: 'How Research Findings Can Be Misleading: Understanding the Biases', excerpt: 'Explores how hidden biases in research studies can mislead readers drawing incorrect conclusions.', tag: 'Methods', url: 'https://blogs.dal.ca/openthink/how-research-findings-can-be-misleading-understanding-the-biases/' },
+    { date: 'Jul 2024', title: 'Mood Swings: Not Limited to Any Specific Gender', excerpt: 'Challenges gender stereotypes by highlighting that men also experience mood swings frequently.', tag: 'Mental health', url: 'https://blogs.dal.ca/openthink/mood-swings-not-limited-to-any-specific-gender/' },
+    { date: 'Jun 2024', title: 'Uncovering the Root Causes: Upstream Reasoning for Sustainable Health Solutions', excerpt: 'Argues for deeper upstream analysis of root causes for truly effective health interventions.', tag: 'Public health', url: 'https://blogs.dal.ca/openthink/uncovering-the-root-causes-upstream-reasoning-for-sustainable-health-solutions/' },
+    { date: 'May 2024', title: 'Fighting Loneliness: The Rise of Social Robots in Elderly Care', excerpt: 'Explores how social robots may help combat loneliness and isolation in elderly populations.', tag: 'Elder care', url: 'https://blogs.dal.ca/openthink/fighting-loneliness-the-rise-of-social-robots-in-elderly-care/' },
+    { date: 'Apr 2024', title: "Slices of the Mind: Understanding Depression's Complex Recipe", excerpt: "Breaks down depression's complex, multifaceted nature affecting roughly 280 million people worldwide.", tag: 'Depression', url: 'https://blogs.dal.ca/openthink/slices-of-the-mind-understanding-depressions-complex-recipe/' },
+    { date: 'Jan 2024', title: 'Shaping the future with tech-enabled care', excerpt: 'Best Imagery award piece featured in the Doctors Nova Scotia Dec/Jan 2025 issue.', tag: 'Magazine', url: 'https://www.flipsnack.com/doctorsnovascotia/doctorsns-decjan2025/full-view.html?p=22' },
   ];
   return (
-    <section id="writing" className="section" data-screen-label="08 Writing">
+    <section id="writing" className="section" data-screen-label="07 Writing">
       <div className="container">
         <div className="section-label">Writing</div>
         <h2 className="section-title">Essays &amp; field notes</h2>
@@ -412,7 +431,7 @@ function Expertise() {
 
 function Contact({ onEmail }) {
   return (
-    <section id="contact" className="section contact-section" data-screen-label="10 Contact">
+    <section id="contact" className="section contact-section" data-screen-label="09 Contact">
       <div className="container narrow">
         <div className="section-label">Contact</div>
         <h2 className="section-title">Open to collaborations across <em>epidemiology, data science, and public health</em>.</h2>
@@ -476,14 +495,13 @@ function App() {
     <>
       <Navbar active={active} onNavigate={scrollTo}/>
       <Hero onContact={() => scrollTo('contact')} onDownload={openCv}/>
-      <Research/>
       <Education/>
       <Experience showPrev={showPrev} setShowPrev={setShowPrev}/>
+      <Research/>
       <Publications/>
       <Awards/>
-      <Certifications/>
       <Writing/>
-      <Expertise/>
+      <Certification/>
       <Contact onEmail={() => { window.location.href = 'mailto:muktadir.munam@dal.ca'; }}/>
       <Footer/>
       {toast && (
